@@ -1,0 +1,57 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BLACK	RBTree.c	14;"	d	file:
+DeleteTree	RBTree.c	/^void DeleteTree(RBNode *T)$/;"	f	signature:(RBNode *T)
+DeleteTree	RBTree.c	/^void DeleteTree(RBNode *T);$/;"	p	file:	signature:(RBNode *T)
+RBDeleteFixup	RBTree.c	/^void RBDeleteFixup(RBNode **T, RBNode *x)$/;"	f	signature:(RBNode **T, RBNode *x)
+RBDeleteFixup	RBTree.c	/^void RBDeleteFixup(RBNode **T, RBNode *x);$/;"	p	file:	signature:(RBNode **T, RBNode *x)
+RBInsertFixup	RBTree.c	/^void RBInsertFixup(RBNode **T, RBNode *z)$/;"	f	signature:(RBNode **T, RBNode *z)
+RBInsertFixup	RBTree.c	/^void RBInsertFixup(RBNode **T, RBNode *z);$/;"	p	file:	signature:(RBNode **T, RBNode *z)
+RBNode	RBTree.c	/^typedef struct RBNode$/;"	s	file:
+RBNode	RBTree.c	/^}RBTree, RBNode;$/;"	t	typeref:struct:RBNode	file:
+RBNode::color	RBTree.c	/^    int color;              \/\/ 颜色$/;"	m	struct:RBNode	file:	access:public
+RBNode::key	RBTree.c	/^    int key;                \/\/ 值$/;"	m	struct:RBNode	file:	access:public
+RBNode::left	RBTree.c	/^    struct RBNode *left;    \/\/ 左孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+RBNode::parent	RBTree.c	/^    struct RBNode *parent;    \/\/ 父节点$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+RBNode::right	RBTree.c	/^    struct RBNode *right;    \/\/ 右孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+RBTree	RBTree.c	/^}RBTree, RBNode;$/;"	t	typeref:struct:RBNode	file:
+RBdelete	RBTree.c	/^void RBdelete(RBTree **T, RBNode *delNode)$/;"	f	signature:(RBTree **T, RBNode *delNode)
+RBdelete	RBTree.c	/^void RBdelete(RBTree **T, RBNode *delNode);$/;"	p	file:	signature:(RBTree **T, RBNode *delNode)
+RBinsert	RBTree.c	/^void RBinsert(RBNode **T, RBNode *z)$/;"	f	signature:(RBNode **T, RBNode *z)
+RBinsert	RBTree.c	/^void RBinsert(RBNode **T, RBNode *z);$/;"	p	file:	signature:(RBNode **T, RBNode *z)
+RED	RBTree.c	13;"	d	file:
+brother	RBTree.c	/^RBNode *brother(RBNode *n)$/;"	f	signature:(RBNode *n)
+brother	RBTree.c	/^RBNode *brother(RBNode *n);$/;"	p	file:	signature:(RBNode *n)
+color	RBTree.c	/^    int color;              \/\/ 颜色$/;"	m	struct:RBNode	file:	access:public
+grandparent	RBTree.c	/^RBNode *grandparent(RBNode *n)$/;"	f	signature:(RBNode *n)
+grandparent	RBTree.c	/^RBNode *grandparent(RBNode *n);$/;"	p	file:	signature:(RBNode *n)
+insert_case1	RBTree.c	/^void insert_case1(RBNode **T, RBNode *n)$/;"	f	signature:(RBNode **T, RBNode *n)
+insert_case2	RBTree.c	/^void insert_case2(RBNode **T, RBNode *n)$/;"	f	signature:(RBNode **T, RBNode *n)
+insert_case3	RBTree.c	/^void insert_case3(RBNode **T, RBNode *n)$/;"	f	signature:(RBNode **T, RBNode *n)
+insert_case4	RBTree.c	/^void insert_case4(RBNode *T, RBNode *n)$/;"	f	signature:(RBNode *T, RBNode *n)
+insert_case5	RBTree.c	/^void insert_case5(RBNode **T, RBNode *n)$/;"	f	signature:(RBNode **T, RBNode *n)
+key	RBTree.c	/^    int key;                \/\/ 值$/;"	m	struct:RBNode	file:	access:public
+left	RBTree.c	/^    struct RBNode *left;    \/\/ 左孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+main	RBTree.c	/^int main()$/;"	f
+makeNIL	RBTree.c	/^RBNode *makeNIL()$/;"	f
+maxnum	RBTree.c	/^RBNode *maxnum(RBTree *T)$/;"	f	signature:(RBTree *T)
+maxnum	RBTree.c	/^RBNode *maxnum(RBTree *T);$/;"	p	file:	signature:(RBTree *T)
+minnum	RBTree.c	/^RBNode *minnum(RBTree *T)$/;"	f	signature:(RBTree *T)
+minnum	RBTree.c	/^RBNode *minnum(RBTree *T);$/;"	p	file:	signature:(RBTree *T)
+newNode	RBTree.c	/^RBNode *newNode(int t)$/;"	f	signature:(int t)
+newNode	RBTree.c	/^RBNode *newNode(int t);$/;"	p	file:	signature:(int t)
+nil	RBTree.c	/^RBNode *nil;$/;"	v
+parent	RBTree.c	/^    struct RBNode *parent;    \/\/ 父节点$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+printRBTree	RBTree.c	/^void printRBTree(RBTree *T)$/;"	f	signature:(RBTree *T)
+printRBTree	RBTree.c	/^void printRBTree(RBTree *T);$/;"	p	file:	signature:(RBTree *T)
+right	RBTree.c	/^    struct RBNode *right;    \/\/ 右孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+search	RBTree.c	/^RBNode *search(RBTree *T, int key)$/;"	f	signature:(RBTree *T, int key)
+search	RBTree.c	/^RBNode *search(RBTree *T, int key);$/;"	p	file:	signature:(RBTree *T, int key)
+successor	RBTree.c	/^RBNode *successor(RBNode *node)$/;"	f	signature:(RBNode *node)
+successor	RBTree.c	/^RBNode *successor(RBNode *node);$/;"	p	file:	signature:(RBNode *node)
+uncle	RBTree.c	/^RBNode *uncle(RBNode *n)$/;"	f	signature:(RBNode *n)
+uncle	RBTree.c	/^RBNode *uncle(RBNode *n);$/;"	p	file:	signature:(RBNode *n)
