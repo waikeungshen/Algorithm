@@ -62,6 +62,17 @@ void DeleteTree(RBNode *T);
 RBNode *successor(RBNode *node);
 /* 中序遍历打印 */
 void printRBTree(RBTree *T);
+/* 左旋转 */
+void LeftRotate(RBTree **T, RBNode *x);
+/* 右旋转 */
+void RigitRotate(RBTree **T, RBNode *x);
+
+
+void insert_case1(RBNode **T, RBNode *n);
+void insert_case2(RBNode **T, RBNode *n);
+void insert_case3(RBNode **T, RBNode *n);
+void insert_case4(RBNode **T, RBNode *n);
+void insert_case5(RBNode **T, RBNode *n);
 /***********************************************/
 
 /* 祖父节点 */
@@ -162,13 +173,13 @@ void RBinsert(RBNode **T, RBNode *z)
     z->color = RED;
     z->left = nil;
     z->right = nil;
-    RBInsertFixup(&T, z);
+    RBInsertFixup(T, z);
 }
 
 /* 插入后修复RBTree性质 */
 void RBInsertFixup(RBNode **T, RBNode *z)
 {
-    insert_case1(&T, z);
+    insert_case1(T, z);
 }
 
 /* 新节点n位于树的根上，没有父节点 */
@@ -177,7 +188,7 @@ void insert_case1(RBNode **T, RBNode *n)
     if (n->parent == nil)
         n->color = BLACK;
     else
-        insert_case2(&T, n);
+        insert_case2(T, n);
 }
 
 /* 新节点的父节点P是黑色 */
@@ -186,38 +197,38 @@ void insert_case2(RBNode **T, RBNode *n)
     if (n->parent->color == BLACK)
         return;
     else
-        insert_case3(&T, n);
+        insert_case3(T, n);
 }
 
 /* 父节点P、叔叔节点U都为红色 */
 void insert_case3(RBNode **T, RBNode *n)
 {
-    if (uncle(n) != nil && uncle(n)->color == nil)
+    if (uncle(n) != nil && uncle(n)->color == RED)
     {
         n->parent->color = BLACK;
         uncle(n)->color = BLACK;
         grandparent(n)->color = RED;
-        insert_case1(&T, grandparent(n));
+        insert_case1(T, grandparent(n));
     }
     else
-        insert_case4(&T, n);
+        insert_case4(T, n);
 }
 
 /* 父节点P是红色，叔叔节点U是黑色或nil */
-void insert_case4(RBNode *T, RBNode *n)
+void insert_case4(RBNode **T, RBNode *n)
 {
     /* 插入节点n是其父节点P的右孩子，而父节点P又是其父节点的左孩子 */
     if(n == n->parent->right && n->parent == grandparent(n)->left)
     {
-        rotate_left(n->parent);
+        LeftRotate(T, n->parent);
         n = n->left;
     }
     else if (n == n->parent->left && n->parent == grandparent(n)->right)
     {
-        rotate_right(n->parent);
+        RigitRotate(T, n->parent);
         n = n->right;
     }
-    insert_case5(&T, n);
+    insert_case5(T, n);
 }
 
 /* 父节点P是红色，而叔叔节点U是黑色或nil */
@@ -227,12 +238,12 @@ void insert_case5(RBNode **T, RBNode *n)
     grandparent(n)->color = RED;
     if (n == n->parent->left && n->parent == grandparent(n)->left)
     {
-        rotate_right(grandparent(n));
+        RigitRotate(T, grandparent(n));
     }
     else
     {
         /* 反情况，n是其父节点的右孩子，而父节点P又是其父节点G的右孩子 */
-        rotate_left(grandparent(n));
+        LeftRotate(T, grandparent(n));
     }
 }
 
@@ -321,6 +332,18 @@ void printRBTree(RBTree *T)
             printf("Black\n");
         printRBTree(T->right);
     }
+}
+
+/* 左旋转 */
+void LeftRotate(RBTree **T, RBNode *x)
+{
+
+}
+
+/* 右旋转 */
+void RigitRotate(RBTree **T, RBNode *x)
+{
+
 }
 
 int main()
