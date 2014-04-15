@@ -49,7 +49,7 @@ RBNode *maxnum(RBTree *T);
 /* 创建一个新节点 */
 RBNode *newNode(int t);
 /* 插入z */
-void RBinsert(RBNode **T, RBNode *z);
+void RBinsert(RBNode **T, int n);
 /* 插入后修复RBTree性质 */
 void RBInsertFixup(RBNode **T, RBNode *z);
 /* 删除函数 */
@@ -65,7 +65,7 @@ void printRBTree(RBTree *T);
 /* 左旋转 */
 void LeftRotate(RBTree **T, RBNode *x);
 /* 右旋转 */
-void RigitRotate(RBTree **T, RBNode *x);
+void RightRotate(RBTree **T, RBNode *y);
 
 
 void insert_case1(RBNode **T, RBNode *n);
@@ -142,8 +142,11 @@ RBNode *newNode(int t)
 }
 
 /* 插入z */
-void RBinsert(RBNode **T, RBNode *z)
+void RBinsert(RBNode **T, int n)
 {
+    /* 创建节点 */
+    RBNode *z = newNode(n);
+
     RBNode *parentP = nil;
     RBNode *p = *T;
 
@@ -173,7 +176,8 @@ void RBinsert(RBNode **T, RBNode *z)
     z->color = RED;
     z->left = nil;
     z->right = nil;
-    RBInsertFixup(T, z);
+    //RBInsertFixup(T, z);
+    printf("%d插入ok\n",n);
 }
 
 /* 插入后修复RBTree性质 */
@@ -225,7 +229,7 @@ void insert_case4(RBNode **T, RBNode *n)
     }
     else if (n == n->parent->left && n->parent == grandparent(n)->right)
     {
-        RigitRotate(T, n->parent);
+        RightRotate(T, n->parent);
         n = n->right;
     }
     insert_case5(T, n);
@@ -238,7 +242,7 @@ void insert_case5(RBNode **T, RBNode *n)
     grandparent(n)->color = RED;
     if (n == n->parent->left && n->parent == grandparent(n)->left)
     {
-        RigitRotate(T, grandparent(n));
+        RightRotate(T, grandparent(n));
     }
     else
     {
@@ -322,11 +326,11 @@ RBNode *successor(RBNode *node)
 /* 中序遍历打印 */
 void printRBTree(RBTree *T)
 {
-    if (T != NULL)
+    if (T != nil)
     {
         printRBTree(T->left);
         printf("KEY:%d COLOR:", T->key);
-        if (T->key == RED)
+        if (T->color == RED)
             printf("Red\n");
         else
             printf("Black\n");
@@ -337,13 +341,34 @@ void printRBTree(RBTree *T)
 /* 左旋转 */
 void LeftRotate(RBTree **T, RBNode *x)
 {
-
+    RBNode *y = x->right;
+    x->right = y->left;
+    y->left->parent = x;
+    y->parent = x->parent;
+    if (x->parent == nil)
+        *T = y;
+    else if (x == x->parent->left)
+        x->parent->left = y;
+    else
+        x->parent->right = y;
+    y->left = x;
+    x->parent = y;
 }
 
 /* 右旋转 */
-void RigitRotate(RBTree **T, RBNode *x)
+void RightRotate(RBTree **T, RBNode *y)
 {
-
+    RBNode *x = y->left;
+    y->right = x->right;
+    x->parent = y->parent;
+    if (y->parent == nil)
+        *T = x;
+    else if (y == y->parent->left)
+        y->parent->left = x;
+    else
+        y->parent->right = x;
+    x->right = y;
+    y->parent = x;
 }
 
 int main()
@@ -352,6 +377,16 @@ int main()
     nil = makeNIL();
     RBTree *T = nil;
 
+    RBinsert(&T, 5);
+    RBinsert(&T, 6);
+    RBinsert(&T, 3);
+    RBinsert(&T, 2);
+    RBinsert(&T, 8);
+    RBinsert(&T, 9);
+    RBinsert(&T, 4);
+    RBinsert(&T, 1);
+    RBinsert(&T, 7);
+    RBinsert(&T, 0);
 
     printRBTree(T);
     /* 释放树的空间 */
