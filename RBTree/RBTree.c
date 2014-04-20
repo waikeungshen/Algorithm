@@ -183,7 +183,60 @@ void RBinsert(RBNode **T, int n)
 /* 插入后修复RBTree性质 */
 void RBInsertFixup(RBNode **T, RBNode *z)
 {
-    insert_case1(T, z);
+    //insert_case1(T, z);
+    while (z->parent->color == RED)
+    {
+        if (z->parent == grandparent(z)->left)  /* z的双亲是其祖父的左节点 */
+        {
+            if (uncle(z) != nil && uncle(z)->color == RED)  /* z的父节点，z的叔叔节点都为红色 */    /*case 1 */
+            {
+                z->parent->color = BLACK;
+                uncle(z)->color = BLACK;
+                grandparent(z)->color = RED;
+                z = grandparent(z);
+            }
+            else
+            {
+                if (z == z->parent->right)   /* case 2 */
+                {
+                    z = z->parent;
+                    LeftRotate(T, z);
+                }
+                else    /* case 3 */
+                {
+                    z->parent->color = BLACK;
+                    grandparent(z)->color = RED;
+                    RightRotate(T, grandparent(z));
+                }
+            }
+        }
+        else
+        {
+            if (uncle(z) != nil && uncle(z)->color == RED)
+            {
+                z->parent->color = BLACK;
+                uncle(z)->color = BLACK;
+                grandparent(z)->color = RED;
+                z = grandparent(z);
+            }
+            else
+            {
+                if (z == z->parent->left )
+                {
+                    z = z->parent;
+                    LeftRotate(T, z);
+                }
+                else
+                {
+                    z->parent->color = BLACK;
+                    grandparent(z)->color = RED;
+                    RightRotate(T, grandparent(z));
+                }
+
+            }
+        }
+    }
+    *T->color = BLACK;  //根为黑色
 }
 
 /* 新节点n位于树的根上，没有父节点 */
