@@ -26,9 +26,9 @@ typedef struct RBNode
 RBNode *nil;
 RBNode *makeNIL()
 {
-    RBNode *p = malloc(sizeof(RBNode));
+    RBNode *p = (RBNode *)malloc(sizeof(RBNode));
     p->color = BLACK;
-    p->key = 0;
+    p->key = -1;
     p->left = p->right = p->parent = NULL;
     return p;
 }
@@ -55,7 +55,7 @@ void RBinsert(int n);
 /* 插入后修复RBTree性质 */
 void RBInsertFixup(RBNode *z);
 /* 删除函数 */
-void RBdelete(RBNode *delNode);
+void RBdelete(int t);
 /* 删除后修复RBTree性质 */
 void RBDeleteFixup(RBNode *x);
 /* 删除树 */
@@ -68,6 +68,8 @@ void printRBTree(RBTree *T);
 void LeftRotate(RBNode *x);
 /* 右旋转 */
 void RightRotate(RBNode *y);
+/* 打印节点信息 */
+void printNode(RBNode *t);
 
 /***********************************************/
 /* 祖父节点 */
@@ -112,7 +114,7 @@ RBNode *search(int key)
 RBNode *minnum(RBTree *T)
 {
     RBNode *p = T;
-    while (p->left != NULL)
+    while (p->left != nil)
         p = p->left;
     return p;
 }
@@ -121,7 +123,7 @@ RBNode *minnum(RBTree *T)
 RBNode *maxnum(RBTree *T)
 {
     RBNode *p = T;
-    while (p->right != NULL)
+    while (p->right != nil)
         p = p->right;
     return p;
 }
@@ -129,7 +131,7 @@ RBNode *maxnum(RBTree *T)
 /* 创建一个新节点 */
 RBNode *newNode(int t)
 {
-    RBNode *p = malloc(sizeof(RBNode));
+    RBNode *p = (RBNode *)malloc(sizeof(RBNode));
     p->key = t;
     p->color = RED;
     p->left = p->right = p->parent = NULL;
@@ -234,18 +236,19 @@ void RBInsertFixup(RBNode *z)
 }
 
 /* 删除函数 */
-void RBdelete(RBNode *delNode)
+void RBdelete(int t)
 {
+    RBNode *delNode = search(t);
     /*1. 确定实际要删除的结点是Z还是Z的后继。*/
     RBNode *realDelNode;
-    if (delNode->left && delNode->right)
-        realDelNode = successor(delNode);
-    else
+    if (delNode->left == nil && delNode->right == nil)
         realDelNode = delNode;
+    else
+        realDelNode = successor(delNode);
 
     /*2. 实际删除结点的孩子，Z的左/右孩子或者后继的右孩子。*/
     RBNode *childNode;
-    if (realDelNode->left)
+    if (realDelNode->left != nil)
         childNode = realDelNode->left;
     else
         childNode = realDelNode->right;
@@ -256,16 +259,16 @@ void RBdelete(RBNode *delNode)
     if (realDelNode->parent == nil)
         T = childNode;
     else if (realDelNode == realDelNode->parent->left)
-        realDelNode->parent->left = childNode;  
-    else  
-        realDelNode->parent->right = childNode; 
+        realDelNode->parent->left = childNode;
+    else
+        realDelNode->parent->right = childNode;
 
     /*4. 如果实际删除的是后继，则把后继中的数据拷贝到Z，替换它。*/
     if (realDelNode != delNode)
     {
         delNode->key = realDelNode->key;
     }
-    
+
     if (realDelNode->color == BLACK)
         RBDeleteFixup(childNode);
 
@@ -275,7 +278,72 @@ void RBdelete(RBNode *delNode)
 /* 删除后修复RBTree性质 */
 void RBDeleteFixup(RBNode *x)
 {
-
+    RBNode *w;
+    while (x != T && x->color == BLACK)
+    {
+        if (x == x->parent->left)
+        {
+            w = x->parent->right;
+            if (w->color == RED)    //case 1 x的兄弟w是红色的
+            {
+                w->color = BLACK;
+                x->parent->color = RED;
+                LeftRotate(x->parent);
+                w = x->parent->right;
+            }
+            if (w->left->color == BLACK && w->right->color == BLACK)    // case 2
+            {
+                w->color = RED;
+                x = x->parent;
+            }
+            else
+            {
+                if (w->right->color == BLACK)   //case 3
+                {
+                    w->left->color = BLACK;
+                    w->color = RED;
+                    RightRotate(w);
+                    w = x->parent->right;
+                }
+                w->color = x->parent->color;    //case 4;
+                x->parent->color = BLACK;
+                w->right->color = BLACK;
+                LeftRotate(x->parent);
+                x = T;
+            }
+        }
+        else
+        {
+            w = x->parent->left;
+            if (w->color == RED)    //case 1
+            {
+                w->color = BLACK;
+                x->parent->color = RED;
+                RightRotate(x->parent);
+                w = x->parent->left;
+            }
+            if (w->right->color == BLACK && w->left->color == BLACK)    // case 2
+            {
+                w->color = RED;
+                x = x->parent;
+            }
+            else
+            {
+                if (w->left->color == BLACK)   //case 3
+                {
+                    w->right->color = BLACK;
+                    w->color = RED;
+                    LeftRotate(w);
+                    w = x->parent->left;
+                }
+                w->color = x->parent->color;    //case 4;
+                x->parent->color = BLACK;
+                w->left->color = BLACK;
+                RightRotate(x->parent);
+                x = T;
+            }
+        }
+    }
 }
 
 /* 删除树 */
@@ -293,11 +361,11 @@ void DeleteTree(RBTree *T)
 RBNode *successor(RBNode *node)
 {
     /* node的右子树非空，那么后继就是右子树的最小值 */
-    if (node->right != NULL)
+    if (node->right != nil)
         return minnum(node->right);
     /* 如果右子树为空 */
     RBNode *y = node->parent;
-    while (y != NULL && node == y->right)
+    while (y != nil && node == y->right)
     {
         node = y;
         y = y->parent;
@@ -311,13 +379,37 @@ void printRBTree(RBTree *t)
     if (t != nil)
     {
         printRBTree(t->left);
-        printf("KEY:%d COLOR:", t->key);
-        if (t->color == RED)
-            printf("Red\n");
-        else
-            printf("Black\n");
+        printNode(t);
         printRBTree(t->right);
     }
+}
+
+/* 打印节点信息 */
+void printNode(RBNode *t)
+{
+    printf("KEY:%d COLOR:", t->key);
+    if (t->color == RED)
+        printf("Red ");
+    else
+        printf("Black ");
+
+    printf("Parent Key:%d COLOR:", t->parent->key);
+    if (t->parent->color == RED)
+        printf("Red ");
+    else
+        printf("Black ");
+
+    printf("LEFT Key:%d COLOR:", t->left->key);
+    if (t->left->color == RED)
+        printf("Red ");
+    else
+        printf("Black ");
+
+    printf("RIGHT Key:%d COLOR:", t->right->key);
+    if (t->right->color == RED)
+        printf("Red\n");
+    else
+        printf("Black\n");
 }
 
 /* 左旋转 */
@@ -374,9 +466,15 @@ int main()
     RBinsert(0);
 
     printRBTree(T);
+
+    printf("-----------delete------------\n");
+    RBdelete(3);
+    printRBTree(T);
+
     /* 释放树的空间 */
     DeleteTree(T);
     /* 释放哨兵的空间 */
     free(nil);
     return 0;
 }
+

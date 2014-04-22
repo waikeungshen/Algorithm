@@ -21,8 +21,8 @@ RBNode::left	RBTree.c	/^    struct RBNode *left;    \/\/ 左孩子$/;"	m	struct:
 RBNode::parent	RBTree.c	/^    struct RBNode *parent;    \/\/ 父节点$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
 RBNode::right	RBTree.c	/^    struct RBNode *right;    \/\/ 右孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
 RBTree	RBTree.c	/^}RBTree, RBNode;$/;"	t	typeref:struct:RBNode	file:
-RBdelete	RBTree.c	/^void RBdelete(RBNode *delNode)$/;"	f	signature:(RBNode *delNode)
-RBdelete	RBTree.c	/^void RBdelete(RBNode *delNode);$/;"	p	file:	signature:(RBNode *delNode)
+RBdelete	RBTree.c	/^void RBdelete(int t)$/;"	f	signature:(int t)
+RBdelete	RBTree.c	/^void RBdelete(int t);$/;"	p	file:	signature:(int t)
 RBinsert	RBTree.c	/^void RBinsert(int n)$/;"	f	signature:(int n)
 RBinsert	RBTree.c	/^void RBinsert(int n);$/;"	p	file:	signature:(int n)
 RED	RBTree.c	13;"	d	file:
@@ -46,6 +46,8 @@ newNode	RBTree.c	/^RBNode *newNode(int t)$/;"	f	signature:(int t)
 newNode	RBTree.c	/^RBNode *newNode(int t);$/;"	p	file:	signature:(int t)
 nil	RBTree.c	/^RBNode *nil;$/;"	v
 parent	RBTree.c	/^    struct RBNode *parent;    \/\/ 父节点$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
+printNode	RBTree.c	/^void printNode(RBNode *t)$/;"	f	signature:(RBNode *t)
+printNode	RBTree.c	/^void printNode(RBNode *t);$/;"	p	file:	signature:(RBNode *t)
 printRBTree	RBTree.c	/^void printRBTree(RBTree *T);$/;"	p	file:	signature:(RBTree *T)
 printRBTree	RBTree.c	/^void printRBTree(RBTree *t)$/;"	f	signature:(RBTree *t)
 right	RBTree.c	/^    struct RBNode *right;    \/\/ 右孩子$/;"	m	struct:RBNode	typeref:struct:RBNode::RBNode	file:	access:public
