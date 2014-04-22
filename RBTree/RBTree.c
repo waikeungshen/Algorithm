@@ -174,7 +174,7 @@ void RBinsert(int n)
     z->left = nil;
     z->right = nil;
     RBInsertFixup(z);
-    printf("%d插入ok\n",n);
+    //printf("%d插入ok\n",n);
 }
 
 /* 插入后修复RBTree性质 */
@@ -291,21 +291,21 @@ void RBDeleteFixup(RBNode *x)
                 LeftRotate(x->parent);
                 w = x->parent->right;
             }
-            if (w->left->color == BLACK && w->right->color == BLACK)    // case 2
+            if (w->left->color == BLACK && w->right->color == BLACK)    // case 2   x的兄弟w是黑色的，而且w的两个孩子都是黑色的
             {
                 w->color = RED;
                 x = x->parent;
             }
             else
             {
-                if (w->right->color == BLACK)   //case 3
+                if (w->right->color == BLACK)   //case 3 x的兄弟w是黑色的，w的左孩子是红色的，右孩子是黑色的
                 {
                     w->left->color = BLACK;
                     w->color = RED;
                     RightRotate(w);
                     w = x->parent->right;
                 }
-                w->color = x->parent->color;    //case 4;
+                w->color = x->parent->color;    //case 4 x的兄弟w是黑色的，而且w的右孩子是红色的
                 x->parent->color = BLACK;
                 w->right->color = BLACK;
                 LeftRotate(x->parent);
