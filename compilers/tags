@@ -1,0 +1,44 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+analyzer	lexicalAnalyzer.c	/^void analyzer(char *code)$/;"	f	signature:(char *code)
+code	SyntaxAnalysis.c	/^char *code = {"begin a:=9x:=2*3; b:=a+x end #"};$/;"	v
+expression	SyntaxAnalysis.c	/^void expression()   \/\/表达式分析$/;"	f
+expression	SyntaxAnalysis.c	/^void expression();  \/\/表达式分析$/;"	p	file:
+factor	SyntaxAnalysis.c	/^void factor()   \/\/因子分析$/;"	f
+factor	SyntaxAnalysis.c	/^void factor();      \/\/因子分析$/;"	p	file:
+indexs	SyntaxAnalysis.c	/^int indexs;  \/* indexs 索引*\/$/;"	v
+indexs	lexicalAnalyzer.c	/^int indexs;  \/* indexs 索引*\/$/;"	v
+isDigit	SyntaxAnalysis.c	/^int isDigit(char ch)    \/* 判断是否为digit *\/$/;"	f	signature:(char ch)
+isDigit	SyntaxAnalysis.c	/^int isDigit(char ch);    \/* 判断是否为digit *\/$/;"	p	file:	signature:(char ch)
+isDigit	lexicalAnalyzer.c	/^int isDigit(char ch)    \/* 判断是否为digit *\/$/;"	f	signature:(char ch)
+isDigit	lexicalAnalyzer.c	/^int isDigit(char ch);    \/* 判断是否为digit *\/$/;"	p	file:	signature:(char ch)
+isError	SyntaxAnalysis.c	/^int isError;$/;"	v
+isKeywords	SyntaxAnalysis.c	/^int isKeywords(char *word)$/;"	f	signature:(char *word)
+isKeywords	SyntaxAnalysis.c	/^int isKeywords(char *word);$/;"	p	file:	signature:(char *word)
+isKeywords	lexicalAnalyzer.c	/^int isKeywords(char *word)$/;"	f	signature:(char *word)
+isKeywords	lexicalAnalyzer.c	/^int isKeywords(char *word);$/;"	p	file:	signature:(char *word)
+isLetter	SyntaxAnalysis.c	/^int isLetter(char ch)   \/* 判断是否为letter *\/$/;"	f	signature:(char ch)
+isLetter	SyntaxAnalysis.c	/^int isLetter(char ch);   \/* 判断是否为letter *\/$/;"	p	file:	signature:(char ch)
+isLetter	lexicalAnalyzer.c	/^int isLetter(char ch)   \/* 判断是否为letter *\/$/;"	f	signature:(char ch)
+isLetter	lexicalAnalyzer.c	/^int isLetter(char ch);   \/* 判断是否为letter *\/$/;"	p	file:	signature:(char ch)
+keywords	SyntaxAnalysis.c	/^char *keywords[6] = {"begin", "if", "then", "while", "do", "end"};$/;"	v
+keywords	lexicalAnalyzer.c	/^char *keywords[6] = {"begin", "if", "then", "while", "do", "end"};$/;"	v
+lrparser	SyntaxAnalysis.c	/^void lrparser()     \/\/ LR分析器$/;"	f
+lrparser	SyntaxAnalysis.c	/^void lrparser();    \/\/LR分析器$/;"	p	file:
+main	SyntaxAnalysis.c	/^int main()$/;"	f
+main	lexicalAnalyzer.c	/^int main()$/;"	f
+scaner	SyntaxAnalysis.c	/^void scaner()$/;"	f
+scaner	SyntaxAnalysis.c	/^void scaner();      \/\/读下一个单词符号$/;"	p	file:
+scanner	lexicalAnalyzer.c	/^void scanner(char *code)$/;"	f	signature:(char *code)
+statement	SyntaxAnalysis.c	/^void statement()        \/\/语句分析$/;"	f
+statement	SyntaxAnalysis.c	/^void statement();   \/\/语句分析$/;"	p	file:
+statementStirng	SyntaxAnalysis.c	/^void statementStirng()  \/\/语句串分析$/;"	f
+statementStirng	SyntaxAnalysis.c	/^void statementStirng();\/\/语句串分析$/;"	p	file:
+syn	SyntaxAnalysis.c	/^int syn;    \/* syn 种别码 *\/$/;"	v
+syn	lexicalAnalyzer.c	/^int syn;    \/* syn 种别码 *\/$/;"	v
+term	SyntaxAnalysis.c	/^void term()     \/\/项分析$/;"	f
+term	SyntaxAnalysis.c	/^void term();        \/\/项分析$/;"	p	file:
